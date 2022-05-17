@@ -107,9 +107,9 @@ function serve_dir_page($root, $dirArray){
 		} else {
 			echo "<button class=\"accordion-button collapsed bg-secondary text-white\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#$collapse_name\" aria-expanded=\"false\" aria-controls=\"$collapse_name\">";
 		}
-			echo ucfirst($subdir) ."</button>
-				</h2>
-			";
+		echo ucfirst($subdir) ."</button>
+			    </h2>
+		";
 		if ($is_first){
 			echo "<div id=\"$collapse_name\" class=\"accordion-collapse collapse show\" aria-labelledby=\"$heading_name\" data-bs-parent=\"#accordionExample\">\n";
 			$is_first = False;
