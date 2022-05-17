@@ -54,7 +54,6 @@
 			</div> <!-- end navbar-collapse -->
 		 </div> <!-- end container-fluid -->
 		</nav>
-
 	<br><br>
 	<div class="accordion" id="accordionExample">
 <?php
@@ -90,7 +89,6 @@ function human_filesize($bytes, $decimals = 2){ // https://www.php.net/manual/en
 
 function serve_dir_page($root, $dirArray){
 	chdir($root);
-	$is_first = True;
 	foreach($dirArray as $subdir){
 		$table_name = str_replace(array(' ', '-'), '', $subdir . "Table");
 		$function_name = str_replace(array(' ', '-'), '', $subdir . "Fn");
@@ -101,23 +99,12 @@ function serve_dir_page($root, $dirArray){
 		echo " 
 			<div class=\"accordion-item bg-dark\"> 
 				<h2 class=\"accordion-header\" id=\"$heading_name\">";
-		// This is soooo ugly lol
-		if ($is_first){
-			echo "<button class=\"accordion-button bg-secondary text-white\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#$collapse_name\" aria-expanded=\"true\" aria-controls=\"$collapse_name\">";
-		} else {
-			echo "<button class=\"accordion-button collapsed bg-secondary text-white\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#$collapse_name\" aria-expanded=\"false\" aria-controls=\"$collapse_name\">";
-		}
+		echo "<button class=\"accordion-button collapsed bg-secondary text-white\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#$collapse_name\" aria-expanded=\"false\" aria-controls=\"$collapse_name\">";
 		echo ucfirst($subdir) ."</button>
 			    </h2>
 		";
-		if ($is_first){
-			echo "<div id=\"$collapse_name\" class=\"accordion-collapse collapse show\" aria-labelledby=\"$heading_name\" data-bs-parent=\"#accordionExample\">\n";
-			$is_first = False;
-		} else {
-			echo "<div id=\"$collapse_name\" class=\"accordion-collapse collapse\" aria-labelledby=\"$heading_name\" data-bs-parent=\"#accordionExample\">\n";
-		}
+		echo "<div id=\"$collapse_name\" class=\"accordion-collapse collapse\" aria-labelledby=\"$heading_name\" data-bs-parent=\"#accordionExample\">\n";
 		echo "<div class=\"accordion-body\">\n";	
-		// echo "<h2>" . ucfirst($subdir) . "</h2>";
 		chdir($subdir);
 		$files = dirToArray('.');
 		echo "
@@ -173,7 +160,7 @@ function serve_dir_page($root, $dirArray){
 				  }
 				}
 			</script>\n";
-				echo "</div> <!-- honestly I have no idea what this is ending -->
+				echo "</div> <!-- I honestly have no idea what this is ending -->
 					</div> <!-- end accordion body -->
 			</div> <!-- end accordion collapse -->";
 		chdir('..');
@@ -181,8 +168,10 @@ function serve_dir_page($root, $dirArray){
 }
 
 $root = 'ROM-files';
-$dirArray = array('Atari 2600', 'Atari 5200', 'Atari 7800', 
-	'Nintendo - Game Boy', 'Nintendo - Game Boy Color', 'Nintendo - Game Boy Advance');
+$dirArray = array('Atari - Atari 2600', 'Atari - Atari 5200', 'Atari - Atari 7800', 
+	'Nintendo - Game Boy', 'Nintendo - Game Boy Color', 'Nintendo - Game Boy Advance',
+	'Nintendo - Nintendo Entertainment System', 'Nintendo - Super Nintendo Entertainment System', 'Nintendo - Nintendo 64',
+	'Sega - Game Gear', 'Sega - Genesis', 'Sega - Sega Master System');
 serve_dir_page($root, $dirArray);
 ?>
 <br><br>
