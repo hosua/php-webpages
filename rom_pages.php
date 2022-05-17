@@ -116,7 +116,7 @@ function serve_dir_page($root, $dirArray){
 		} else {
 			echo "<div id=\"$collapse_name\" class=\"accordion-collapse collapse\" aria-labelledby=\"$heading_name\" data-bs-parent=\"#accordionExample\">\n";
 		}
-	//echo "<div class=\"accordion-body\">\n";	
+		echo "<div class=\"accordion-body\">\n";	
 		// echo "<h2>" . ucfirst($subdir) . "</h2>";
 		chdir($subdir);
 		$files = dirToArray('.');
@@ -173,7 +173,8 @@ function serve_dir_page($root, $dirArray){
 				  }
 				}
 			</script>\n";
-		echo "</div> <!-- end accordion body -->
+				echo "</div> <!-- honestly I have no idea what this is ending -->
+					</div> <!-- end accordion body -->
 			</div> <!-- end accordion collapse -->";
 		chdir('..');
 	}
