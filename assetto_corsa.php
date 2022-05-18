@@ -94,53 +94,60 @@ foreach($dirArray as $subdir){
 	echo "<h2>" . ucfirst($subdir) . "</h2>";
 	chdir($subdir);
 	$files = dirToArray('.');
-	echo "<div class=\"table-responsive\">";
-	echo "<input type=\"text\" id=\"$subdir-input\" onkeyup=\"$function_name()\" placeholder=\"Search $subdir..\">
-		<table id=\"$subdir\", class=\"table table-dark table-striped table-hover\">
+	echo <<<EOT
+	<div class="table-responsive">
+	 <input type="text" id="$subdir-input" onkeyup="$function_name()" placeholder="Search $subdir..">
+		<table id="$subdir", class="table table-dark table-striped table-hover">
 		<thead>
-		  <tr class=\"table-dark\">
-			<th scope=\"col\">#</th>
-			<th scope=\"col\">File</th>
-			<th scope=\"col\">Size</th>
-			<th scope=\"col\">Link</th>
+		  <tr class="table-dark">
+			<th scope="col">#</th>
+			<th scope="col">File</th>
+			<th scope="col">Size</th>
+			<th scope="col">Link</th>
 		  </tr>
-		</thead><br>";
+		</thead><br>
+EOT;
 	foreach($files as $key => $value){
+		$index = ($key+1);
 		$fsize = human_filesize(filesize($value));
 		$path = "$root".DIRECTORY_SEPARATOR."$subdir".DIRECTORY_SEPARATOR."$value";
-		echo "<tr class=\"table-dark\">\n";
-		echo "<td>".($key+1)."</td>\n";
-		echo "<td>$value</td>\n";
-		echo "<td>$fsize</td>\n";
-		echo "<td><a href=\"$path\">Download</a></td>\n";
-		echo "</tr>\n";
+		echo <<<EOT
+		<tr class="table-dark">
+			<td>$index</td>
+			<td>$value</td>
+			<td>$fsize</td>
+			<td><a href="$path">Download</a></td>
+		</tr>
+EOT;
 	}
-	echo "</table>";
-	echo "
+	echo <<<EOT
+		</table>
+	
 		<script>
 		function $function_name() {
 		  // Declare variables
 		  var input, filter, table, tr, td, i, txtValue;
-		  input = document.getElementById(\"$subdir-input\");
+		  input = document.getElementById("$subdir-input");
 		  filter = input.value.toUpperCase();
-		  table = document.getElementById(\"$subdir\");
-		  tr = table.getElementsByTagName(\"tr\");
+		  table = document.getElementById("$subdir");
+		  tr = table.getElementsByTagName("tr");
 
 		  // Loop through all table rows, and hide those who don't match the search query
 		  for (i = 0; i < tr.length; i++) {
-			td = tr[i].getElementsByTagName(\"td\")[1];
+			td = tr[i].getElementsByTagName("td")[1];
 			if (td) {
 			  txtValue = td.textContent || td.innerText;
 			  if (txtValue.toUpperCase().indexOf(filter) > -1) {
-				tr[i].style.display = \"\";
+				tr[i].style.display = "";
 			  } else {
-				tr[i].style.display = \"none\";
+				tr[i].style.display = "none";
 			  }
 			}
 		  }
 		}
-	</script>\n";
-	echo "</div><br><br> <!-- End table responsive -->";
+	</script>
+	</div><br><br> <!-- End table responsive -->
+EOT;
 	chdir('..');
 }
 

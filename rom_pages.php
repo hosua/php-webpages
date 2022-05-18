@@ -68,9 +68,9 @@ function dirToArray($dir, $dir_only = False) { // https://www.php.net/manual/en/
    $result = array();
    $cdir = scandir($dir);
    foreach ($cdir as $key => $value){
-      if (!in_array($value,array(".",".."))){
-         if (is_dir($dir . DIRECTORY_SEPARATOR . $value)){
-            $result[$value] = dirToArray($dir . DIRECTORY_SEPARATOR . $value);
+      if (!in_array($value,array(".", ".."))){
+         if (is_dir($dir.DIRECTORY_SEPARATOR.$value)){
+            $result[$value] = dirToArray($dir.DIRECTORY_SEPARATOR.$value);
 		 } else {
 			 if (!$dir_only) {
 				 $result[] = $value;
@@ -95,79 +95,87 @@ function serve_dir_page($root, $dirArray){
 		$input_name = str_replace(array(' ', '-'), '', $subdir . "Input");
 		$heading_name = str_replace(array(' ', '-'), '', $subdir . "Heading");
 		$collapse_name = str_replace(array(' ', '-'), '', $subdir . "Collapse");
-
-		echo " 
-			<div class=\"accordion-item bg-dark\"> 
-				<h2 class=\"accordion-header\" id=\"$heading_name\">";
-		echo "<button class=\"accordion-button collapsed bg-secondary text-white\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#$collapse_name\" aria-expanded=\"false\" aria-controls=\"$collapse_name\">";
-		echo ucfirst($subdir) ."</button>
-			    </h2>
-		";
-		echo "<div id=\"$collapse_name\" class=\"accordion-collapse collapse\" aria-labelledby=\"$heading_name\" data-bs-parent=\"#accordionExample\">\n";
-		echo "<div class=\"accordion-body\">\n";	
+		$up_first = ucfirst($subdir);
+		echo <<<EOT
+		<div class="accordion-item bg-dark"> 
+			<h2 class="accordion-header" id="$heading_name">
+				<button class="accordion-button collapsed bg-secondary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#$collapse_name" aria-expanded="false" aria-controls="$collapse_name">
+					$up_first
+				</button>
+			</h2>
+			<div id="$collapse_name" class="accordion-collapse collapse" aria-labelledby="$heading_name" data-bs-parent="#accordionExample">
+				<div class="accordion-body">
+EOT;
 		chdir($subdir);
 		$files = dirToArray('.');
-		echo "
-				<div class=\"table-responsive\">";
-		echo "
-					<input type=\"text\" id=\"$input_name\" onkeyup=\"$function_name()\" placeholder=\"Search $subdir...\">
-						<table id=\"$table_name\" class=\"table table-dark table-striped table-hover\">
-						<thead>
-						  <tr class=\"table-dark\">
-							<th scope=\"col\">#</th>
-							<th scope=\"col\">File</th>
-							<th scope=\"col\">Size</th>
-							<th scope=\"col\">Link</th>
-						  </tr>
-						</thead><br>
-		";
+
+		echo <<<EOT
+					<div class="table-responsive">
+						<input type="text" id="$input_name" onkeyup="$function_name()" placeholder="Search $subdir...">
+							<table id="$table_name" class="table table-dark table-striped table-hover">
+							<thead>
+							  <tr class="table-dark">
+								<th scope="col">#</th>
+								<th scope="col">File</th>
+								<th scope="col">Size</th>
+								<th scope="col">Link</th>
+							  </tr>
+							</thead><br>
+
+EOT;
 		foreach($files as $key => $value){
+			$index = ($key+1);		
 			if (is_file($value)){
 				$fsize = human_filesize(filesize($value));
 				$path = "$root".DIRECTORY_SEPARATOR."$subdir".DIRECTORY_SEPARATOR."$value";
-				echo "
-				<tr class=\"table-dark\">
-					<td>".($key+1)."</td>
-					<td>$value</td>
-					<td>$fsize</td>
-					<td><a href=\"$path\">Download</a></td>
-				</tr>";
+				echo <<<EOT
+							<tr class="table-dark">
+								<td>$index</td>
+								<td>$value</td>
+								<td>$fsize</td>
+								<td><a href="$path">Download</a></td>
+							</tr>
+EOT;
 			}
-		}
-	echo "</table>
-		</div> <!-- end table-responsive -->\n";
-		echo "
-			<script>
-				function $function_name() {
-				  // Declare variables
-				  var input, filter, table, tr, td, i, txtValue;
-				  input = document.getElementById(\"$input_name\");
-				  filter = input.value.toUpperCase();
-				  table = document.getElementById(\"$table_name\");
-				  tr = table.getElementsByTagName(\"tr\");
+		} /* End inner for loop */
+		echo <<<EOT
 
-				  // Loop through all table rows, and hide those who don't match the search query
-				  for (i = 0; i < tr.length; i++) {
-					td = tr[i].getElementsByTagName(\"td\")[1];
-					if (td) {
-					  txtValue = td.textContent || td.innerText;
-					  if (txtValue.toUpperCase().indexOf(filter) > -1) {
-						tr[i].style.display = \"\";
-					  } else {
-						tr[i].style.display = \"none\";
-					  }
-					}
-				  }
-				}
-			</script>\n";
-				echo "</div> <!-- I honestly have no idea what this is ending -->
-					</div> <!-- end accordion body -->
-			</div> <!-- end accordion collapse -->";
+						</table>
+					</div> <!-- end table-responsive -->
+					<script>
+						function $function_name() {
+						  // Declare variables
+						  var input, filter, table, tr, td, i, txtValue;
+						  input = document.getElementById("$input_name");
+						  filter = input.value.toUpperCase();
+						  table = document.getElementById("$table_name");
+						  tr = table.getElementsByTagName("tr");
+
+						  // Loop through all table rows, and hide those who don't match the search query
+						  for (i = 0; i < tr.length; i++) {
+							td = tr[i].getElementsByTagName("td")[1];
+							if (td) {
+							  txtValue = td.textContent || td.innerText;
+							  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+								tr[i].style.display = "";
+							  } else {
+								tr[i].style.display = "none";
+							  }
+							}
+						  }
+						}
+					</script>
+				</div> <!-- end accordion body -->
+			</div> <!-- end accordion collapse -->
+		</div> <!-- end accordion item -->
+
+EOT;
 		chdir('..');
-	}
+	} /* End outer for loop */
 }
 
 $root = 'ROM-files';
+/* There are better ways of getting all subdirectories, but for security I specify them manually here. */
 $dirArray = array('Atari - Atari 2600', 'Atari - Atari 5200', 'Atari - Atari 7800', 
 	'Nintendo - Game Boy', 'Nintendo - Game Boy Color', 'Nintendo - Game Boy Advance',
 	'Nintendo - Nintendo Entertainment System', 'Nintendo - Super Nintendo Entertainment System', 'Nintendo - Nintendo 64',
