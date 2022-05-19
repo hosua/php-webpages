@@ -50,6 +50,9 @@
 				<li>
 				  <a class="nav-link" aria-current="page" href="../ROM_pages/rom_pages.php">ROM Downloads</a>
 				</li>
+				<li class="nav-item">
+				  <a class="nav-link" aria-current="page" href="../contact.html">Contact</a>
+				</li>
 			  </ul>
 			</div>
 		 </div>
@@ -65,7 +68,7 @@
 <br><br>
 <a href='https://www.racedepartment.com/forums/assetto-corsa-mods.36/'>Race Department</a><br>
 <a href='https://assettocorsa.club/'>assetto corsa club</a><br>
-<a href='assetto-db.com/'>assetto-db</a><br>
+<a href='https://assetto-db.com/'>assetto-db</a><br>
 <a href='https://assettomods.com/assettomods-releases/'>assetto-mods</a><br>
 <a href='https://tm-modding.eu/reboot-team-tracks/'>reboot-team-tracks</a><br>
 <a href='https://rgnnr8.wixsite.com/modbase/cars---brands'>wix-site</a><br>
