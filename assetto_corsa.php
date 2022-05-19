@@ -56,7 +56,24 @@
 		</nav>
 
 
-<strong>Note: I am not the creator of these mods</strong>
+<p>Note: I am <strong>not</strong> the creator of these mods.</p>
+<p>The purpose of this page is to archive my favorite Assetto Corsa mods and to learn more about web development. Please do not download any paid mods that are hosted on here unless you rightfully own them. </p>
+
+<br><br>
+<H2>Sources and other important links for Assetto Corsa</H2>
+<a href='https://assettocorsa.club/content-manager.html'>Content Manager</a><br>
+<br><br>
+<a href='https://www.racedepartment.com/forums/assetto-corsa-mods.36/'>Race Department</a><br>
+<a href='https://assettocorsa.club/'>assetto corsa club</a><br>
+<a href='assetto-db.com/'>assetto-db</a><br>
+<a href='https://assettomods.com/assettomods-releases/'>assetto-mods</a><br>
+<a href='https://tm-modding.eu/reboot-team-tracks/'>reboot-team-tracks</a><br>
+<a href='https://rgnnr8.wixsite.com/modbase/cars---brands'>wix-site</a><br>
+<br><br>
+<a href='https://vrc-modding-team.net/'>VRC<br>
+<a href='https://www.assettocorsamods.org/shop/'>assetto corsa-mods</a><br>
+<br><br>
+<a href='Presets.7z'>My Presets</a><br>
 <br><br>
 <?php
 # For debug
@@ -152,22 +169,6 @@ EOT;
 }
 
 ?>
-<br><br>
-<H1>Other Sources</H2>
-<a href='https://assettocorsa.club/content-manager.html'>Content Manager</a><br>
-<br><br>
-<a href='https://www.racedepartment.com/forums/assetto-corsa-mods.36/'>Race Department</a><br>
-<a href='https://assettocorsa.club/'>assetto corsa club</a><br>
-<a href='assetto-db.com/'>assetto-db</a><br>
-<a href='https://assettomods.com/assettomods-releases/'>assetto-mods</a><br>
-<a href='https://tm-modding.eu/reboot-team-tracks/'>reboot-team-tracks</a><br>
-<a href='https://rgnnr8.wixsite.com/modbase/cars---brands'>wix-site</a><br>
-<br><br>
-<a href='https://vrc-modding-team.net/'>VRC<br>
-<a href='https://www.assettocorsamods.org/shop/'>assetto corsa-mods</a><br>
-<br><br>
-<a href='Presets.7z'>My Presets</a><br>
-<br><br>
 </div>
 <!-- Bootstrap core JavaScript
 ================================================== -->
