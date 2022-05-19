@@ -50,11 +50,14 @@
 				<li>
 				  <a class="nav-link active" aria-current="page" href="rom_pages.php">ROM Downloads</a>
 				</li>
+				<li class="nav-item">
+				  <a class="nav-link" aria-current="page" href="../contact.html">Contact</a>
+				</li>
 			  </ul>
 			</div> <!-- end navbar-collapse -->
 		 </div> <!-- end container-fluid -->
 		</nav>
-	<p> Disclaimer: I <strong>do not</strong> own the copyright to these ROMs. These ROMs are hosted on this website for <strong>archival purposes</strong> only. </p>
+	<p> Disclaimer: I <strong>do not</strong> own the copyrights to these ROMs. These ROMs are hosted on this website for <strong>archival purposes</strong> only. </p>
 	<p> You should not download them unless you rightfully own them. </p>
 	<div class="accordion" id="accordionExample">
 <?php
