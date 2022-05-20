@@ -87,8 +87,8 @@ EOT;
 			<h1>Contact Information</h1>
 			<p class="lead"> Please leave me a voice mail or send me an email.</p>
 			<p> Cell: 973-462-4663 </p> 
-			<a href="mailto:hosua.o@gmail.com">hosua.o@gmail.com</a>
-			<br> <a href="mailto:jao43@njit.edu">jao43@njit.edu</a>
+			<a href="mailto:jao43@njit.edu">jao43@njit.edu</a>
+			<br> <a href="mailto:hosua.o@gmail.com">hosua.o@gmail.com</a>
 			<br> <br> <br>
 			<br> <a href="https://github.com/hosua"><img src="images/github-icon.png" style="width:42px;height:42px;"></a>
 			<a href="https://github.com/hosua">Github</a>
