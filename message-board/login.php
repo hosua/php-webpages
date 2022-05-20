@@ -126,10 +126,9 @@
 		$time_logged = date("Y-m-d H:i:s");
 		$ip_logged = $_SERVER['REMOTE_ADDR'];
 		$hash_pass = mysqli_fetch_row($conn->query("SELECT password from $table_name WHERE username = '$user'"))[0];
-		$check_user = "SELECT * from $table_name WHERE username = '$user' and password = '$hash_pass'";
-		$result = $conn->query($check_user);
+		$login_user = mysqli_fetch_row($conn->query("SELECT username from $table_name WHERE username = '$user'"))[0];
 		if (password_verify($pass, $hash_pass)){
-			$_SESSION['login_user'] = $user;
+			$_SESSION['login_user'] = $login_user;
 			header("location: welcome.php");
 		} else {
 			echo "<p><strong>Invalid username or password.</strong></p>";
