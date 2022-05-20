@@ -1,5 +1,5 @@
 # php-webpages
-These scripts use Bootstrap 5, mysql for storing messages and user account information, and of course php/html.
+These scripts use Bootstrap 5 for the front-end, mysql for storing messages and user account information, and php/html.
 
 It is a work in progress and currently has a login page, a message board, and a few download pages.
 
