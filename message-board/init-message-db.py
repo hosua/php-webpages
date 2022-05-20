@@ -4,11 +4,8 @@ import mysql.connector
 
 hostname = '127.0.0.1'
 
-""" 
-This script will initialize a new message board named 'thread'. 
-You can change this by changing the table_name variable below to the desired name.
-To use this script, you must run this script with the username and password as the first and second arguments respectively.
-"""
+# This script is used to create the first table
+
 try:
     usr = sys.argv[1]
     passwd = sys.argv[2]
@@ -20,7 +17,7 @@ except IndexError:
 def test():
     now = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S')
 
-    test_data = {'user': 'Test User',
+    test_data = {'user': 'Hoswoo',
                  'message': 'Hello world!',
                  'ip': hostname,
                  'time_posted': now}
@@ -39,7 +36,7 @@ def add_to_database(msg_dict: dict):
     cursor = db.cursor()
 
     u_name = msg_dict['user']
-    table_name = 'thread'
+    table_name = 'Main'
 
     try: 
         cursor.execute("CREATE TABLE " + table_name + " ("
