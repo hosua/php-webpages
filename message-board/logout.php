@@ -1,3 +1,10 @@
+<?php session_start(); 
+if (isset($_SESSION['login_user'])){
+	session_destroy();
+	unset($_SESSION['login_user']);
+	header('location: ../index.php');
+}
+?>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -8,7 +15,7 @@
 <meta name="author" content="">
 <link rel="icon" href="favicon.ico">
 
-<title>Login</title>
+<title>Logout</title>
 
 <!-- Bootstrap core CSS -->
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -36,61 +43,16 @@
 <body class="text-light bg-dark">
 <!-- END OF BOILERPLATE -->
 <div class="container">
-<div class="left-align">
-	<h3>Login</h3>
-	<form method='post' class="row g-3" action='register.php'>
-	<div class="col-md-4">
-		<label for="username" class="form-label">Username</label>
-		<input class='bg-dark text-white form-control' id='username' minlength='4' maxlength='30' type='text' name='username' placeholder='Enter username...' required>
-	</div>
-	<div class="col-md-4">
-		<label for="password" class="form-label">Password</label>
-		<div class="input-group mb-3">
-			<input class='bg-dark text-white form-control' id='password' minlength='6' maxlength='30' type='password' name='password' placeholder='Enter password...' required>
-			<div class="input-group-append">
-				<button id='btn_password' style='text-align:left' type='button' class='btn btn-outline-secondary text-white' onclick="toggle_visibility('password'); changeText('btn_password')">Show</button>
-			</div>
-		</div>
-	</div>
-	<div class="row g-3">
-		<div class="col-md-4">
-			<button style='text-align:left' type='submit' class='btn btn-primary'>Login</button>
-			<button style='text-align:left' type='button' class='btn btn-primary' onclick="history.back()">Go back</button>
-		</div>
-		<p> Not registered yet? <a href="register.html">Register</a> now! </p>
-	</div>
-<script language='javascript' type='text/javascript'> 
-		function changeText(input) {
-			var x = document.getElementById(input);
-			if (x.innerText === "Hide"){
-				x.innerText = "Show";
-			} else {
-				x.innerText = "Hide";
+	<div class="left-align">
+		<h3>Logout</h3>
+		<script language='javascript' type='text/javascript'> 
+			// Source: https://stackoverflow.com/questions/6320113/how-to-prevent-form-resubmission-when-page-is-refreshed-f5-ctrlr
+			if ( window.history.replaceState ) {
+				window.history.replaceState( null, null, window.location.href );
 			}
-		}
-		// Source: https://www.w3schools.com/howto/howto_js_toggle_password.asp
-		function toggle_visibility(input) {
-		  var x = document.getElementById(input);
-		  if (x.type === "password") {
-			x.type = "text";
-		  } else {
-			x.type = "password";
-		  }
-		} 
-		// Source: https://stackoverflow.com/questions/8395269/what-do-form-action-and-form-method-post-action-do
-		function check(input) {
-			if (input.value != document.getElementById('password').value) {
-				input.setCustomValidity('Password Must be Matching.');
-			} else {
-				// input is valid -- reset the error message
-				input.setCustomValidity('');
-			}
-		}
-	</script>
-	</form>
+		</script>
+		</form>
 </div>
-</div>
-
 
 
 <!-- START OF BOILERPLATE -->

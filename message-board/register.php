@@ -35,38 +35,39 @@
 
 <body class="text-light bg-dark">
 <div class="container">
-	<?php
-		# For debug
-		ini_set('display_errors', 1);
+<?php
+	# For debug
+	ini_set('display_errors', 1);
 
+	if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 		date_default_timezone_set('America/New_York');
 
 		$servername = "127.0.0.1";
-		$username = "";
-		$password = "";
-		$dbname = "Accounts";
+		$db_username = "";
+		$db_password = "";
+		$db_name = "Accounts";
 
 		// Create connection
-		$conn = new mysqli($servername, $username, $password, $dbname);
+		$conn = new mysqli($servername, $db_username, $db_password, $db_name);
 
 		// Check connection
 		if ($conn->connect_error){
 			die("Connection failed: ".$conn->connect_error);
 		}
 
-		$sql = "SHOW TABLES FROM $dbname";
+		$sql = "SHOW TABLES FROM $db_name";
 		$result = $conn->query($sql);
 		if (!$result){
-			echo "Could not find the database $dbname";
+			echo "Could not find the database $db_name";
 			echo 'MySQL Error: '.mysql_error();
 			exit;
 		}
 
 		$table_name = 'Users';
 
-		$user = htmlspecialchars($_POST['username']);
-		$pass = htmlspecialchars($_POST['password']);
-		$email = htmlspecialchars($_POST['email']);
+		$user = trim(htmlspecialchars($_POST['username']));
+		$pass = password_hash(trim(htmlspecialchars($_POST['password'])), PASSWORD_BCRYPT);
+		$email = trim(htmlspecialchars($_POST['email']));
 		$time_registered = date("Y-m-d H:i:s");
 		$user_ip = $_SERVER['REMOTE_ADDR'];
 		# Create table if it does not exist yet
@@ -90,7 +91,7 @@
 				$sql = "INSERT INTO $table_name (id, username, password, ip_registered, time_registered)
 							VALUES(UUID(), \"$user\", \"$pass\", \"$user_ip\", \"$time_registered\");";
 				if ($conn->query($sql) === TRUE){
-					echo "<p>Successfully registered user with the username \"$user\".</p>";
+					echo "<p>Successfully registered user with the username <strong>$user</strong>.</p>";
 				} else {
 					echo "<p>ERROR: ".$sql."<br>".$conn->error."</p>";
 				}
@@ -100,13 +101,20 @@
 				<a class="btn btn-primary" href="register.html">Back To Registration</a>
 EOT;
 			}
-			echo <<<EOT
-				<a class="btn btn-primary" href="../index.html">Home</a>
-EOT;
 		}
+	}
+		echo <<<EOT
+			<a class="btn btn-primary" href="../index.php">Home</a>
+EOT;
 
-		# echo "$user, $pass, $email, $time_registered, $user_ip"
-	?>
+	# echo "$user, $pass, $email, $time_registered, $user_ip"
+?>
+<script>
+	// Source: https://stackoverflow.com/questions/6320113/how-to-prevent-form-resubmission-when-page-is-refreshed-f5-ctrlr
+	if ( window.history.replaceState ) {
+		window.history.replaceState( null, null, window.location.href );
+	}
+</script>
 </div>
 
 
