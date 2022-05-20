@@ -1,7 +1,7 @@
 # php-webpages
-Random php stuff that I am testing out. 
+These scripts use Bootstrap 5, mysql for storing messages and user account information, and of course php/html.
 
-These scripts will use bootstrap 5 and php to serve web-pages. 
+It is a work in progress and currently has a login page, a message board, and a few download pages.
 
 If you would like to see the work being done, you can check out [my website](http://24.184.108.245:421/index.php).
 
