@@ -72,6 +72,15 @@ EOT;
 			</div>
 		  </div>
 		</nav>
+<div class="left-align">
+<?php
+if (!isset($login_user)){
+	echo <<<EOT
+		<p> Note: You are not logged in. You must <a href='login.php'>login</a> first before you can post messages! </p>
+EOT;
+} 
+?>
+</div>
 <?php
 # For debug
 # ini_set('display_errors', 1);
