@@ -60,6 +60,9 @@ $login_user = $_SESSION['login_user'];
 		<li>
 		  <a class="nav-link" aria-current="page" href="ROM_pages/rom_pages.php">ROM Downloads</a>
 		</li>
+		<li class="nav-item">
+		  <a class="nav-link" aria-current="page" href="portfolio.php">Portfolio</a>
+		</li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="contact.php">Contact</a>
         </li>
@@ -85,10 +88,10 @@ EOT;
 
 		<div class="starter-template">
 			<h1>Contact Information</h1>
-			<p class="lead"> Please leave me a voice mail or send me an email.</p>
-			<p> Cell: 973-462-4663 </p> 
+			<p class="lead"> If you would like to get in contact with me, please send me an email or leave me a voice mail.</p>
+			<p><strong> Josh Ortiga </strong></p>
+			<p><strong> Cell: 973-462-4663</strong> </p> 
 			<a href="mailto:jao43@njit.edu">jao43@njit.edu</a>
-			<br> <a href="mailto:hosua.o@gmail.com">hosua.o@gmail.com</a>
 			<br> <br> <br>
 			<br> <a href="https://github.com/hosua"><img src="images/github-icon.png" style="width:42px;height:42px;"></a>
 			<a href="https://github.com/hosua">Github</a>

@@ -63,6 +63,9 @@ $login_user = $_SESSION['login_user'];
 				  <a class="nav-link" aria-current="page" href="ROM_pages/rom_pages.php">ROM Downloads</a>
 				</li>
 				<li class="nav-item">
+				  <a class="nav-link" aria-current="page" href="portfolio.php">Portfolio</a>
+				</li>
+				<li class="nav-item">
 				  <a class="nav-link" aria-current="page" href="contact.php">Contact</a>
 				</li>
 			  </ul>
@@ -84,9 +87,15 @@ EOT;
 		</nav>
 		<!-- End side menu -->
 	<div class="container">
-		<div class="center-align">
-			<h2>I don't know what to put here lol</h2>
-			<br>
+		<h2 class="center-align">Welcome to Hoswoo's website!</h2>
+		<div class="left-align">
+			<p> My name is Josh, and I am currently a student majoring in Computer Science at <a href="https://www.njit.edu/">NJIT</a>. </p>
+			<p> I am an <a href="https://archlinux.org/">Arch Linux</a> enthusiast and enjoy playing Racing Simulators like Assetto Corsa during my free time. </p>
+			<p> On this website you will find a <a href="portfolio.php">portfolio</a> containing some of my work,
+			including this website! Everything you see on here was implemented by me! You can find more details about 
+			what I used to create this website in my portfolio. </p>
+			<p> There is a <a href="message-board/board.php">message board</a> that anyone with a registered account is allowed to post on. 
+			Come say hello! </p>
 		</div>
 	</div>
 
