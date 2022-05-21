@@ -1,3 +1,6 @@
+<?php session_start();
+$login_user = $_SESSION['login_user'];
+?>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -39,7 +42,7 @@
 			<div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
 			  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item">
-				  <a class="nav-link" aria-current="page" href="../index.html">Home</a>
+				  <a class="nav-link" aria-current="page" href="../index.php">Home</a>
 				</li>
 				<li>
 				  <a class="nav-link" aria-current="page" href="../message-board/board.php">Message Board</a>
@@ -51,14 +54,35 @@
 				  <a class="nav-link active" aria-current="page" href="rom_pages.php">ROM Downloads</a>
 				</li>
 				<li class="nav-item">
-				  <a class="nav-link" aria-current="page" href="../contact.html">Contact</a>
+				  <a class="nav-link" aria-current="page" href="../portfolio.php">Portfolio</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" aria-current="page" href="../contact.php">Contact</a>
 				</li>
 			  </ul>
+<?php 
+	if (!isset($login_user)){
+		echo <<<EOT
+				<a class="btn-sm btn-primary me-2" href="../message-board/login.php">Login</a>
+				<a class="btn-sm btn-success" href="../message-board/register.html">Register</a>
+EOT;
+	} else {
+		echo <<<EOT
+				<p>Logged in as <strong class="me-2">$login_user</strong> </p>
+				<a class="btn-sm btn-danger" href="../message-board/logout.php">Logout</a>
+EOT;
+	}
+?>
 			</div> <!-- end navbar-collapse -->
 		 </div> <!-- end container-fluid -->
 		</nav>
 	<p> Disclaimer: I <strong>do not</strong> own the copyrights to these ROMs. These ROMs are hosted on this website for <strong>archival purposes</strong> only. </p>
 	<p> You should not download them unless you rightfully own them. </p>
+	<h2>Nintendo
+		<span style="float:right;">
+			<button style='text-align:left' type='submit' class='btn btn-primary' onclick="history.back()">Go back</button>
+		</span>
+	</h2> 
 	<div class="accordion" id="accordionExample">
 <?php
 # For debug
@@ -91,8 +115,8 @@ function human_filesize($bytes, $decimals = 2){ // https://www.php.net/manual/en
 	return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor];
 }
 
-function serve_dir_page($root, $dirArray){
-	chdir($root);
+// Ensure you change to the proper directory before serving it
+function serve_dir_page($dirArray){
 	foreach($dirArray as $subdir){
 		$table_name = str_replace(array(' ', '-'), '', $subdir . "Table");
 		$function_name = str_replace(array(' ', '-'), '', $subdir . "Fn");
@@ -178,13 +202,15 @@ EOT;
 	} /* End outer for loop */
 }
 
+
 $root = 'ROM-files';
-/* There are better ways of getting all subdirectories, but for security I specify them manually here. */
-$dirArray = array('Atari - Atari 2600', 'Atari - Atari 5200', 'Atari - Atari 7800', 
-	'Nintendo - Game Boy', 'Nintendo - Game Boy Color', 'Nintendo - Game Boy Advance',
-	'Nintendo - Nintendo Entertainment System', 'Nintendo - Super Nintendo Entertainment System', 'Nintendo - Nintendo 64',
-	'Sega - Game Gear', 'Sega - Genesis', 'Sega - Sega Master System');
-serve_dir_page($root, $dirArray);
+$console = 'Nintendo';
+
+chdir($root.DIRECTORY_SEPARATOR.$console);
+
+$dirArray = array('Game Boy', 'Game Boy Color', 'Game Boy Advance',
+ 'Nintendo Entertainment System', 'Super Nintendo Entertainment System', 'Nintendo 64');
+serve_dir_page($dirArray);
 ?>
 <br><br>
 </div> <!-- end accordion -->
