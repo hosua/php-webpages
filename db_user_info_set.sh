@@ -10,7 +10,7 @@ if [[ -z $dir ]]; then
 	dir=".";
 fi
 
-append_db_user_info(){
+set_db_user_info(){
 	fn_dir="$1";
 	cd "$fn_dir";
 	if [[ -z $username ]] | [[ -z $password ]]; then
@@ -21,8 +21,8 @@ append_db_user_info(){
 		password_regex="db_password = \"\"";
 		for f in *; do
 			if [[ -d $f ]]; then
-				echo DIR $f;
-				append_db_user_info "$f"
+				echo Checking directory $f;
+				set_db_user_info "$f"
 			else
 				user_res=$(cat $f | grep "$user_regex");
 				password_res=$(cat $f | grep "$password_regex");
@@ -44,4 +44,4 @@ append_db_user_info(){
 	cd ".."
 }
 
-append_db_user_info $dir
+set_db_user_info $dir

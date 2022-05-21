@@ -21,7 +21,7 @@ clean_db_user_info(){
 		password_regex="db_password = \"$password\"";
 		for f in *; do
 			if [[ -d $f ]]; then
-				echo DIR $f;
+				echo Checking directory $f;
 				clean_db_user_info "$f"
 			else
 				user_res=$(cat $f | grep "$user_regex");
