@@ -131,7 +131,16 @@
 			$_SESSION['login_user'] = $login_user;
 			header("location: welcome.php");
 		} else {
-			echo "<p><strong>Invalid username or password.</strong></p>";
+			$db_logs = 'Logs';
+			$login_table = 'Login';
+			$conn_logs = new mysqli($servername, $db_username, $db_password, $db_logs);
+			$sql = "INSERT INTO $login_table (user, status, ip, time_logged)
+				VALUES(\"$user\", \"failure\", \"$ip_logged\", \"$time_logged\");";
+			if ($conn_logs->query($sql) === TRUE){
+				echo "<p><strong>Invalid username or password.</strong></p>";
+			} else {
+				echo "<p>ERROR: ".$sql."<br>".$conn_logs->error."</p>";
+			}
 		}
 	}
 	?>

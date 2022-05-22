@@ -13,7 +13,7 @@ $login_user = $_SESSION['login_user'];
 <meta name="author" content="">
 <link rel="icon" href="favicon.ico">
 
-<title>Login</title>
+<title>Welcome</title>
 
 <!-- Bootstrap core CSS -->
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@ $login_user = $_SESSION['login_user'];
 <link href="../offcanvas.css" rel="stylesheet">
 
 
-<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+<!-- Just for debugging purposes. Dont actually copy these 2 lines! -->
 <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 <script src="../assets/js/ie-emulation-modes-warning.js"></script>
 
@@ -47,12 +47,25 @@ $login_user = $_SESSION['login_user'];
 <?php
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors', 1);
-	echo <<<EOT
-	<p>Logged in as <strong>$login_user</strong></p>
-	<a class="btn btn-primary" href="../index.php">Go Home</a>
+		$servername = "127.0.0.1";
+		$db_username = "";
+		$db_password = "";
+		$time_logged = date("Y-m-d H:i:s");
+		$ip_logged = $_SERVER['REMOTE_ADDR'];
+		$db_logs = 'Logs';
+		$login_table = 'Login';
+		$conn_logs = new mysqli($servername, $db_username, $db_password, $db_logs);
+		$sql = "INSERT INTO $login_table (user, status, ip, time_logged)
+			VALUES(\"$login_user\", \"success\", \"$ip_logged\", \"$time_logged\");";
+		if ($conn_logs->query($sql) === TRUE){
+		echo <<<EOT
+			<p>Logged in as <strong>$login_user</strong></p>
 EOT;
+		} else {
+			echo "<p>ERROR: ".$sql."<br>".$conn_logs->error."</p>";
+		}
 ?>
-
+	<a class="btn btn-primary" href="../index.php">Go Home</a>
 	</div>
 </div>
 

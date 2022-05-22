@@ -53,6 +53,9 @@ $login_user = $_SESSION['login_user'];
 				  <a class="nav-link" aria-current="page" href="../ROM_pages/rom_pages.php">ROM Downloads</a>
 				</li>
 				<li class="nav-item">
+				  <a class="nav-link" aria-current="page" href="../portfolio.php">Portfolio</a>
+				</li>
+				<li class="nav-item">
 				  <a class="nav-link" aria-current="page" href="../contact.php">Contact</a>
 				</li>
 			  </ul>
