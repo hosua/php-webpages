@@ -56,7 +56,8 @@
 		<div class="row g-3">
 			<div class="col-md-4">
 				<button style='text-align:left' type='submit' class='btn btn-primary'>Login</button>
-				<button style='text-align:left' type='button' class='btn btn-primary' onclick="history.back()">Go back</button>
+				<button style='text-align:left' type='button' class='btn btn-primary' onclick="history.back()">Back</button>
+				<a href='../index.php' style='text-align:left' type='button' class='btn btn-primary'>Home</a>
 			</div>
 			<p> Not registered yet? <a href="register.html">Register</a> now! </p>
 		</div>

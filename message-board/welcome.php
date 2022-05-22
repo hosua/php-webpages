@@ -47,6 +47,7 @@ $login_user = $_SESSION['login_user'];
 <?php
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors', 1);
+	if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 		$servername = "127.0.0.1";
 		$db_username = "";
 		$db_password = "";
@@ -64,6 +65,7 @@ EOT;
 		} else {
 			echo "<p>ERROR: ".$sql."<br>".$conn_logs->error."</p>";
 		}
+	}
 ?>
 	<a class="btn btn-primary" href="../index.php">Go Home</a>
 	</div>
