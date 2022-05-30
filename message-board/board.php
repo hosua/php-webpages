@@ -200,11 +200,12 @@ EOT;
 		$u_name = $row['user'];
 		$u_msg = $row['message'];	
 		$time_posted = $row['time_posted'];
+		/* Note to self: text-break != text-wrap */
 		echo <<<EOT
-			<div class='border border-secondary accordion-body'>
-				<p class='display-6' style='text-align:left;'>$u_name</p>
+			<div class='border border-secondary accordion-body text-break'>
+				<p class='display-5' style='text-align:left;'><strong>$u_name</strong></p>
 				<HR>
-				<div style='text-align:left'>$u_msg</div>
+				<div style='text-align:left; font-size:85%;'>$u_msg</div>
 				<div style='text-align:right; font-size:75%;'>Posted on</div>
 				<div style='text-align:right; font-size:75%;'>$time_posted</div>
 			</div>

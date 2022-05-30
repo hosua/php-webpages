@@ -95,7 +95,7 @@ EOT;
 			including this website! Everything you see on here was implemented by me! You can find more details about 
 			what I used to create this website in my portfolio. </p>
 			<p> There is a <a href="message-board/board.php">message board</a> that anyone with a registered account is allowed to post on. 
-			Come say hello! </p>
+			Come say hello!</p>
 		</div>
 	</div>
 

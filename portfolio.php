@@ -174,12 +174,16 @@ EOT;
 		<p> Windows 11 changed the right click menu and made it terrible. 
 			This batch script reverts it back to how it has always been and should be.</p>
 		<p> There is also another script to revert it back to the way it was if you wish to undo the changes. </p>
-		<strong> Before: </strong> <br>
-		<img class="img-fluid" src="images/windows-before.png">
-		<span style='float:right;'>
-			<strong> After: </strong> <br>
-			<img class="img-fluid" src="images/windows-after.png">
-		</span>
+		<div class="row g-3">
+			<span class="col-md-4">
+				<strong> Before: </strong> <br>
+				<img class="img-fluid" src="images/windows-before.png">
+			</span>
+			<span class="col-md-4">
+				<strong> After: </strong> <br>
+				<img class="img-fluid" src="images/windows-after.png">
+			</span>
+		</div>
 	 </div>
 	 <hr>
 
